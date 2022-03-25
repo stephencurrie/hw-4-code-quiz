@@ -8,32 +8,35 @@
         <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
     <body>
-        <header>
-            <div class="scores">
+        <header class="scoretimer">
+        <!-- <div> -->
+            <div class="scores" id="high">
                 <h3>High Scores</h3>
             </div>
 
-            <div class="timer">
-                <h3>Timer</h3>
+            <div>
+                <h3 id="timer"></h3>
             </div>
 
+        <!-- </div> -->
         </header>
-
         <main class="container">
-            <div class="screen0">
+            <section class="screen" id="screen0" data-states="[0]">
                 <h1>Buffalo Bills Trivia Page</h1>
 
                 <p>Answer the following Buffalo Bills trivia to enshrine yourself in the Bills' Hall of Fame</p>
                 
                 <p>Press Start Quiz to start!</p>
 
-            </div>
+                <button type="button" id="start">Start Game</button>
 
-            <div class="screen1">
-                <h2>Who is the current quarterback of the Buffalo Bills?</h2>
+            </section>
+
+            <section class="screen" id="screen1" data-states="[1]">
+                <h2 id="question">Who is the current quarterback of the Buffalo Bills?</h2>
 
                              
-                <ol>
+                <ol id="possibleAnswers">
                     <li>Tom Brady</li>
                     <li>Josh Allen</li>
                     <li>Matt Ryan</li>
@@ -42,29 +45,34 @@
                 <hr>
                 <p>Correct!</p>    
 
-            </div>
+            </section>
 
-            <div class="screen2">
-                <h2>All done!</h1>
+            <section class="screen" id="screen2" data-states="[2]">
+                <h2>All done!</h2>
 
-                <p>Your final score is</p>
+                <p>Your final score is: <span id=finalscore>22</span></p>
+
+               
                 
                 <p>Enter your initals</p>
-                <form></form>
+                    <form>
+                    <input type="text" id="initials" value="Enter initials here">
+                    <input type="submit" value="Submit">
+                    </form>
 
-            </div>
+            </section>
 
-            <div class="screen3">
+            <div class="screen" id="screen3" data-states="[3]">
                 <h2>High Scores</h2>
 
-                <ol>
+                <ol id="highscores">
                     <li>SRC</li>
                     <li>TMB</li>
                     <li>DWC</li>
                 </ol>
                 
-                <p>Go Back</p>
-                <p>Clear</p>
+                <button type="button" id="goback">Go Back</button>
+                <button type="button" id="clear">Clear</button>
 
             </div>
 
@@ -72,6 +80,6 @@
            
         </main>
         
-        <script src="./assets/script.js"></script>
+        <script src="./assets/js/script.js"></script>
     </body>
 </html>
