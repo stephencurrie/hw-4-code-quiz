@@ -10,8 +10,8 @@
     <body>
         <header class="scoretimer">
         <!-- <div> -->
-            <div class="scores" id="high">
-                <h3>High Scores</h3>
+            <div class="scores">
+                <h3 id="high">High Scores</h3>
             </div>
 
             <div>
@@ -28,11 +28,11 @@
                 
                 <p>Press Start Quiz to start!</p>
 
-                <button type="button" id="start">Start Game</button>
+                <button type="button" id="start">Start Quiz</button>
 
             </section>
 
-            <section class="screen" id="screen1" data-states="[1]">
+            <section class="screen hide" id="screen1" data-states="[1]">
                 <h2 id="question">Who is the current quarterback of the Buffalo Bills?</h2>
 
                              
@@ -42,12 +42,13 @@
                     <li>Matt Ryan</li>
                     <li>Patrick Mahomes</li>
                 </ol>
+                <button type="button" id="state1">Go to state 2</button>
                 <hr>
                 <p>Correct!</p>    
 
             </section>
 
-            <section class="screen" id="screen2" data-states="[2]">
+            <section class="screen hide" id="screen2" data-states="[2]">
                 <h2>All done!</h2>
 
                 <p>Your final score is: <span id=finalscore>22</span></p>
@@ -59,10 +60,11 @@
                     <input type="text" id="initials" value="Enter initials here">
                     <input type="submit" value="Submit">
                     </form>
+                    <button type="button" id="state2">Go to state 3</button>
 
             </section>
 
-            <div class="screen" id="screen3" data-states="[3]">
+            <div class="screen hide" id="screen3" data-states="[3]">
                 <h2>High Scores</h2>
 
                 <ol id="highscores">
