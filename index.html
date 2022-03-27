@@ -33,18 +33,14 @@
             </section>
 
             <section class="screen hide" id="screen1" data-states="[1]">
-                <h2 id="question">Who is the current quarterback of the Buffalo Bills?</h2>
-
+                <h2 id="question"></h2>
                              
                 <ol id="possibleAnswers">
-                    <li>Tom Brady</li>
-                    <li>Josh Allen</li>
-                    <li>Matt Ryan</li>
-                    <li>Patrick Mahomes</li>
+
                 </ol>
                 <button type="button" id="state1">Go to state 2</button>
                 <hr>
-                <p>Correct!</p>    
+                <p id ="verdict"></p>    
 
             </section>
 
@@ -56,27 +52,25 @@
                
                 
                 <p>Enter your initals</p>
-                    <form>
-                    <input type="text" id="initials" value="Enter initials here">
-                    <input type="submit" value="Submit">
-                    </form>
-                    <button type="button" id="state2">Go to state 3</button>
-
+                    <form method="Post">
+                    <input type="text" name="initials" id="initials" >
+                    <!-- <input id="submitInit" type="submit" value="Submit"> -->
+                    
+                    <button type="button" id="state2">Submit</button>
+                </form>
             </section>
 
-            <div class="screen hide" id="screen3" data-states="[3]">
+            <section class="screen hide" id="screen3" data-states="[3]">
                 <h2>High Scores</h2>
 
                 <ol id="highscores">
-                    <li>SRC</li>
-                    <li>TMB</li>
-                    <li>DWC</li>
+
                 </ol>
                 
-                <button type="button" id="goback">Go Back</button>
+                <button type="button" id="state3">Go Back</button>
                 <button type="button" id="clear">Clear</button>
 
-            </div>
+            </section>
 
 
            

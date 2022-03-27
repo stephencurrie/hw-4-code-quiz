@@ -10,36 +10,40 @@ var screen1El = document.querySelector("#screen1");
 var questionEl = document.querySelector("#question");
 var answersEl = document.querySelector("#possibleAnswers");
 var screen1ButtonEl = screen1El.querySelector("#state1");
+var verdictEl = document.querySelector("#verdict");
 
 var screen2El = document.querySelector("#screen2");
 var finalScoreEl = screen2El.querySelector("#finalscore");
-var initalsEl = screen2El.querySelector("#initials");
+var initialsEl = screen2El.querySelector("#initials");
+var submitInit = document.querySelector("submitInit");
 var screen2ButtonEl = screen2El.querySelector("#state2");
 
 var screen3El = document.querySelector("#screen3");
-var highScoresEl = screen3El.querySelector("#goback");
-var goBackEl = screen3El.querySelector("#highscores");
+var goBackEl = screen3El.querySelector("#goback");
+var highScoresEl = screen3El.querySelector("#highscores");
+var screen3ButtonEl = screen3El.querySelector("#state3");
 var clearEl = screen3El.querySelector("#clear");
-
+var initialsSpan = document.querySelector("#initialspan");
 
 var HIDE_CLASS = "hide";
-
+var timeInterval;
+var timeLeft = 60;
 var questions = [
   {
     question: "Who is the current quarterback of the Buffalo Bills?",
     answers: ["Tom Brady", "Josh Allen", "Patrick Mahomes", "Lamar Jackson"],
-    answer: 1
+    answer: "Josh Allen",
   },
   {
     question: "In what city is the stadium located?",
     answers: ["Orchard Park", "Los Angeles", "Lockport", "New York City"],
-    answer: 0
+    answer: "Orchard Park",
   },
   {
     question: "Who missed the field goal in Superbowl 25?",
     answers: ["Jim Kelly", "Thurman Thomas", "Bruce Smith", "Scott Norwood"],
-    answer: 3
-  }
+    answer: "Scott Norwood",
+  },
 ];
 
 var currentQuestion = 0;
@@ -50,55 +54,14 @@ var dynamicElements = [
   screen2El,
   screen3El,
   highEl,
-  timerEl
+  timerEl,
 ];
 
 function init() {
-  setEventListeners();
+  setEventListeners(); // <- when page loads, start the EventListeners function
 }
 
-// This function sets the state
-
-function setState(state) {
-  switch (state) {
-    case 1:
-      populateQuestion();
-      break;
-    default:
-      break;
-  }
-
-  dynamicElements.forEach(function (ele) {
-    var possibleStatesAttr = ele.getAttribute("data-states");
-    var possibleStates = JSON.parse(possibleStatesAttr);
-    if (possibleStates.includes(state)) {
-      ele.classList.remove(HIDE_CLASS);
-    } else {
-      ele.classList.add(HIDE_CLASS);
-    }
-  });
-}
-
-// This function polulates the questions
-
-function populateQuestion() {
-  var questionObj = questions[currentQuestion];
-  // Remove the current list items
-  answersEl.innerHTML = "";
-  questionEl.textContent = questionObj.question;
-  questionObj.answers.forEach(function (question) {
-    var li = document.createElement("li");
-    li.textContent = question;
-    answersEl.appendChild(li);
-  });
-  if (currentQuestion === questions.length - 1) {
-    currentQuestion = 0;
-  } else {
-    currentQuestion++;
-  }
-}
-
-// This sets the event listeners to take action
+// This sets the event listeners to take action to go to the different states when the buttons are clicked
 
 function setEventListeners() {
   screen0ButtonEl.addEventListener("click", function () {
@@ -108,45 +71,121 @@ function setEventListeners() {
     setState(2);
   });
   screen2ButtonEl.addEventListener("click", function () {
+    setState(3);
+  });
+  screen3ButtonEl.addEventListener("click", function () {
     setState(0);
   });
+}
+// This function sets the state
 
-// BELOW INSTEAD OF ALERT COMPARE TO ARRAY AND MOVE TO NEXT QUESTION
-  answersEl.addEventListener("click", function (evt) {
-    var target = evt.target;
-    if (target.matches("li")) {
-      window.alert(target.innerText);
+function setState(state) {
+  switch (state) {
+    case 1:
+      countdown();
+      populateQuestion(); //When in state1, run the populateQuestion function
+      break;
+    default:
+      break;
+  }
+
+  dynamicElements.forEach(function (ele) {
+    var possibleStatesAttr = ele.getAttribute("data-states");
+    var possibleStates = JSON.parse(possibleStatesAttr);
+    if (possibleStates[0] == state) {
+      ele.classList.remove(HIDE_CLASS);
+    } else {
+      ele.classList.add(HIDE_CLASS);
     }
   });
 }
 
 
 
+// This function polulates the questions
 
+function populateQuestion() {
+  // for (var i=0; i < questions.length; i++){
 
+  var questionObj = questions[currentQuestion];
+  // Remove the current list items
+  answersEl.innerHTML = "";
+  questionEl.textContent = questionObj.question;
+  questionObj.answers.forEach(function (question) {
+    var li = document.createElement("li");
+    li.textContent = question;
+    li.addEventListener("click", checkAnswer);
+    answersEl.appendChild(li);
+  });
+
+  // }
+}
+
+// checks answers for correctness
+function checkAnswer(evt) {
+  var target = evt.target;
+  // if (target.matches("li")) {
+  console.log(target.innerText);
+  var correctAnswer = questions[currentQuestion].answer;
+  if (target.innerText === correctAnswer) {
+
+    alert("Correct");
+  } else {
+
+    alert("Incorrect");
+  }
+  currentQuestion++;
+  if (questions.length > currentQuestion) {
+    populateQuestion();
+  } else {
+    clearInterval(timeInterval);
+    setState(2);
+  }
+  // }
+}
+function showHighScores() {
+  var highScores = JSON.parse(localStorage.getItem("High Scores")) || [];
+  highScoresEl.innerHTML = "";
+  for (var i = 0; i < highScores.length; i++) {
+    var li = document.createElement("li");
+    li.textContent = highScores[i].initials + ": " + highScores[i].score;
+    highScoresEl.append(li);
+  }
+}
+
+screen2ButtonEl.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  var initials = document.querySelector("#initials").value;
+  var newScore = {
+    initials: initials,
+    score: timeLeft,
+  };
+  var highScores = JSON.parse(localStorage.getItem("High Scores")) || [];
+  highScores.push(newScore);
+  localStorage.setItem("High Scores", JSON.stringify(highScores));
+
+  showHighScores();
+});
 // This is the Countdown at the top of the page
 function countdown() {
-  var timeLeft = 5;
+  
 
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var timeInterval = setInterval(function () {
+  timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
     if (timeLeft > 1) {
       // Set the `textContent` of `timerEl` to show the remaining seconds
-      timerEl.textContent = ("Time left " + timeLeft);
+      timerEl.textContent = "Time left " + timeLeft;
       // Decrement `timeLeft` by 1
       timeLeft--;
-   
     } else {
       // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-      timerEl.textContent = '';
+      timerEl.textContent = "";
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
-  
     }
   }, 1000);
 }
-countdown();
 
 init();
-
