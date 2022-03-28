@@ -1,8 +1,23 @@
 .scoretimer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+
 }
+
+p.center {
+  text-align: center;
+}
+
+a.style {
+    background-color: red;
+    color: white;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    border-radius: 20px;
+    display: inline-block;
+
+}
+
 
 h2 {
   padding: 20 px;
