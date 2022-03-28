@@ -28,6 +28,7 @@ var initialsSpan = document.querySelector("#initialspan");
 var HIDE_CLASS = "hide";
 var timeInterval;
 var timeLeft = 60;
+
 var questions = [
   {
     question: "Who is the current quarterback of the Buffalo Bills?",
@@ -53,12 +54,7 @@ var questions = [
 
 var currentQuestion = 0;
 
-var dynamicElements = [
-  screen0El,
-  screen1El,
-  screen2El,
-  screen3El,
-];
+var dynamicElements = [screen0El, screen1El, screen2El, screen3El];
 
 function init() {
   setEventListeners(); // <- when page loads, start the EventListeners function
@@ -129,10 +125,9 @@ function checkAnswer(evt) {
   var correctAnswer = questions[currentQuestion].answer;
   if (target.innerText === correctAnswer) {
     verdictEl.innerText = "Correct!";
-
   } else {
     verdictEl.innerText = "Incorrect!";
-
+    timeLeft = timeLeft - 10;
   }
   currentQuestion++;
   if (questions.length > currentQuestion) {
@@ -143,7 +138,6 @@ function checkAnswer(evt) {
   }
 
   finalScoreEl.innerText = timeLeft;
-  console.log(finalScoreEl);
 }
 function showHighScores() {
   var highScores = JSON.parse(localStorage.getItem("High Scores")) || [];

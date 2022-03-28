@@ -1,87 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Buffalo Bills Trivia</title>
-        <link rel="stylesheet" href="./assets/css/reset.css" />
-        <link rel="stylesheet" href="./assets/css/style.css" />
-    </head>
-    <body>
-        <header class="scoretimer">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buffalo Bills Trivia</title>
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <header class="scoretimer">
+      <div class="logo"><img src="./assets/images/bills.png" alt="bills logo"></div>
 
-            <!-- <div class="scores">
-                <h3 id="high">High Scores</h3> 
-            </div> -->
+      <div>
+        <h1 id="timer"></h1>
+      </div>
+    </header>
+    <main class="container">
+      <section class="screen" id="screen0" data-states="[0]">
+        <h1>Buffalo Bills Trivia Page</h1>
 
-            <div>
-                <h1 id="timer"></h1>
-            </div>
+        <p>
+          Answer the following Buffalo Bills trivia to enshrine yourself in the
+          Bills' Hall of Fame
+        </p>
 
+        <p>Press Start Quiz to start!</p>
 
-        </header>
-        <main class="container">
-            <section class="screen" id="screen0" data-states="[0]">
-                <h1>Buffalo Bills Trivia Page</h1>
+        <button type="button" id="start">Start Quiz</button>
+      </section>
 
-                <p>Answer the following Buffalo Bills trivia to enshrine yourself in the Bills' Hall of Fame</p>
-                
-                <p>Press Start Quiz to start!</p>
+      <section class="screen hide" id="screen1" data-states="[1]">
+        <h2 id="question"></h2>
 
-                <button type="button" id="start">Start Quiz</button>
+        <ol id="possibleAnswers"></ol>
+        <button class="hide" type="button" id="state1">Go to state 2</button>
+        <hr />
+        <strong><p id="verdict"></p></strong>
+      </section>
 
-            </section>
+      <section class="screen hide" id="screen2" data-states="[2]">
+        <h2>All done!</h2>
 
-            <section class="screen hide" id="screen1" data-states="[1]">
-                <h2 id="question"></h2>
-                             
-                <ol id="possibleAnswers">
+        <p>Your final score is: <span id="finalscore"></span></p>
 
-                </ol>
-                <button class="hide" type="button" id="state1">Go to state 2</button>
-                <hr>
-                <strong><p id ="verdict"></p></strong>
+        <p>Enter your initals</p>
+        <form method="Post">
+          <input type="text" name="initials" id="initials" />
 
-            </section>
+          <button type="button" id="state2">Submit</button>
+        </form>
+      </section>
 
-            <section class="screen hide" id="screen2" data-states="[2]">
-                <h2>All done!</h2>
+      <section class="screen hide" id="screen3" data-states="[3]">
+        <h2>High Scores</h2>
 
-                <p>Your final score is: <span id="finalscore"></span></p>
-           
+        <ol id="highscores"></ol>
 
-               
-                
-                <p>Enter your initals</p>
-                    <form method="Post">
-                    <input type="text" name="initials" id="initials" >
-                    <!-- <input id="submitInit" type="submit" value="Submit"> -->
-                    
-                    <button type="button" id="state2">Submit</button>
-                </form>
-            </section>
+        <p class="center">
+          <a
+            class="style"
+            href="https://stephencurrie.github.io/hw-4-code-quiz/"
+            >Go Back and Play Again!</a
+          >
+        </p>
 
-            <section class="screen hide" id="screen3" data-states="[3]">
-                <h2>High Scores</h2>
+        <button class="hide" type="button" id="state3">Go Back</button>
+        <button class="hide" type="button" id="clear">Clear</button>
+      </section>
+    </main>
 
-                <ol id="highscores">
-
-                </ol>
-                
-<p class="center">
-    <a class="style" href="https://stephencurrie.github.io/hw-4-code-quiz/">Go Back and Play Again!</a>
-</p>
-
-                <!-- <button type="button" id="state3">Go Back</button>
-                <button type="button" id="clear">Clear</button> -->
-
-            </section>
-
-
-           
-        </main>
-        
-        <script src="./assets/js/script.js"></script>
-    </body>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
-
