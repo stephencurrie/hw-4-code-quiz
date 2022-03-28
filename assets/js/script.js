@@ -13,7 +13,7 @@ var screen1ButtonEl = screen1El.querySelector("#state1");
 var verdictEl = document.querySelector("#verdict");
 
 var screen2El = document.querySelector("#screen2");
-var finalScoreEl = screen2El.querySelector("#finalscore");
+var finalScoreEl = document.querySelector("#finalscore");
 var initialsEl = screen2El.querySelector("#initials");
 var submitInit = document.querySelector("submitInit");
 var screen2ButtonEl = screen2El.querySelector("#state2");
@@ -100,8 +100,6 @@ function setState(state) {
   });
 }
 
-
-
 // This function polulates the questions
 
 function populateQuestion() {
@@ -124,15 +122,14 @@ function populateQuestion() {
 // checks answers for correctness
 function checkAnswer(evt) {
   var target = evt.target;
-  // if (target.matches("li")) {
-  console.log(target.innerText);
+
   var correctAnswer = questions[currentQuestion].answer;
   if (target.innerText === correctAnswer) {
+    verdictEl.innerText = "Correct!";
 
-    alert("Correct");
   } else {
+    verdictEl.innerText = "Incorrect!";
 
-    alert("Incorrect");
   }
   currentQuestion++;
   if (questions.length > currentQuestion) {
@@ -141,7 +138,9 @@ function checkAnswer(evt) {
     clearInterval(timeInterval);
     setState(2);
   }
-  // }
+
+  finalScoreEl.innerText = timeLeft;
+  console.log(finalScoreEl);
 }
 function showHighScores() {
   var highScores = JSON.parse(localStorage.getItem("High Scores")) || [];
@@ -155,12 +154,12 @@ function showHighScores() {
 
 screen2ButtonEl.addEventListener("click", function (event) {
   event.preventDefault();
-
   var initials = document.querySelector("#initials").value;
   var newScore = {
     initials: initials,
     score: timeLeft,
   };
+
   var highScores = JSON.parse(localStorage.getItem("High Scores")) || [];
   highScores.push(newScore);
   localStorage.setItem("High Scores", JSON.stringify(highScores));
@@ -169,8 +168,6 @@ screen2ButtonEl.addEventListener("click", function (event) {
 });
 // This is the Countdown at the top of the page
 function countdown() {
-  
-
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1

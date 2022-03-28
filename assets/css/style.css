@@ -22,12 +22,15 @@ ol {
 }
 
 li {
+  border-radius: 20px;
+  background-color: blue;
+  margin: 20px;
+  color: white;
   padding: 10px;
 }
 
 p {
   padding: 10px;
-
 }
  
 
