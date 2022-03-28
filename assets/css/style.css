@@ -1,20 +1,11 @@
-
-
 .scoretimer {
   display: flex;
-  border: solid green 5px;
   align-items: center;
   justify-content: space-between;
-
-
-
-  
-  /* margin-left: 200px; */
 }
 
 h2 {
   padding: 20 px;
-
 }
 
 ol {
@@ -32,12 +23,9 @@ li {
 p {
   padding: 10px;
 }
- 
-
 
 .scores {
   width: 50%;
-  
 }
 
 .timer {
@@ -50,16 +38,12 @@ p {
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  
 }
 
 .screen {
-
   border: solid black 1px;
   width: 800px;
   padding: 20px;
-
-   
 }
 
 .hide {

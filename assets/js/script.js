@@ -44,6 +44,11 @@ var questions = [
     answers: ["Jim Kelly", "Thurman Thomas", "Bruce Smith", "Scott Norwood"],
     answer: "Scott Norwood",
   },
+  {
+    question: "What division do the Buffalo Bills play in?",
+    answers: ["AFC East", "NFC East", "AFC West", "NFC Central"],
+    answer: "AFC East",
+  },
 ];
 
 var currentQuestion = 0;
@@ -53,8 +58,6 @@ var dynamicElements = [
   screen1El,
   screen2El,
   screen3El,
-  highEl,
-  timerEl,
 ];
 
 function init() {
