@@ -38,7 +38,7 @@ The following were the acceptance criteria for the ticket:
 - [x] When I click the start button, a timer starts and a question is presented
 - [x] When an answer is provided, another question is displayed
 - [x] When an incorrect answer is presented, extra time is taken off of the timer
-- [x] The game is finished when the timer expires or all the questions are answered
+- [x] The game is finished when all the questions are answered
 - [x] When the game is finished, the score can be saved
 
 
